@@ -146,5 +146,75 @@ print(f"Maximum temperature: {min_max[1]}")
 
 #Exercise 6:
 
+def display_main_menu():
+    print("Enter some numbers separated by commas (e.g. 5, 67, 32)")
 
+
+def get_user_input():
+    user_input = input()
+    string_list = user_input.split(",")
+    temperature_list = []
+
+    for value in string_list:
+        temperature_list.append(float(value))
+
+    return temperature_list
+
+
+def calc_average_temperature(temperature_list):
+    total = 0
+
+    for value in temperature_list:
+        total = total + value
+
+    average = total / len(temperature_list)
+    return average
+
+
+def calc_min_max_temperature(temperature_list):
+    min_temp = temperature_list[0]
+    max_temp = temperature_list[0]
+
+    for value in temperature_list:
+        if value < min_temp:
+            min_temp = value
+
+        if value > max_temp:
+            max_temp = value
+
+    return [min_temp, max_temp]
+
+
+def sort_temperature(temperature_list):
+    sorted_list = temperature_list.copy()
+    sorted_list.sort()
+    return sorted_list
+
+
+def calc_median_temperature(temperature_list):
+    sorted_list = sort_temperature(temperature_list)
+    length = len(sorted_list)
+    middle = length // 2
+
+    if length % 2 == 1:
+        median = sorted_list[middle]
+    else:
+        median = (sorted_list[middle - 1] + sorted_list[middle]) / 2
+
+    return median
+
+
+display_main_menu()
+temperatures = get_user_input()
+
+average = calc_average_temperature(temperatures)
+min_max = calc_min_max_temperature(temperatures)
+sorted_temperatures = sort_temperature(temperatures)
+median = calc_median_temperature(temperatures)
+
+print(f"Average temperature: {average}")
+print(f"Minimum temperature: {min_max[0]}")
+print(f"Maximum temperature: {min_max[1]}")
+print(f"Sorted temperatures: {sorted_temperatures}")
+print(f"Median temperature: {median}")
 
